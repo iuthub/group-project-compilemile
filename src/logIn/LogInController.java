@@ -22,8 +22,6 @@ public class LogInController {
     public TextField txtUsername;
     @FXML
     public PasswordField password;
-//    @FXML
-//    public PasswordField passwordConfirm;
 
     @FXML
     public void goToLibrarian(ActionEvent event) {
