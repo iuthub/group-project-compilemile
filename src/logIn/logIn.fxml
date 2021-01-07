@@ -26,7 +26,7 @@
       <TextField fx:id="txtUsername" layoutX="77.0" layoutY="170.0" prefHeight="25.0" prefWidth="233.0" promptText="Username" styleClass="text-field" stylesheets="@styles.css" />
       <PasswordField fx:id="password" layoutX="77.0" layoutY="228.0" prefHeight="25.0" prefWidth="233.0" promptText="Password" styleClass="text-field" stylesheets="@styles.css" />
 <!--      <PasswordField fx:id="passwordConfirm" layoutX="77.0" layoutY="284.0" prefHeight="25.0" prefWidth="233.0" promptText="Confirm password" styleClass="text-field" stylesheets="@styles.css" />-->
-      <Button id="glass-grey" layoutX="144.0" layoutY="352.0" mnemonicParsing="false" onAction="#goToLibrarian" prefHeight="33.0" prefWidth="86.0" stylesheets="@styles.css" text="Log In" textFill="#753d3d">
+      <Button id="glass-grey" layoutX="144.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToLibrarian" prefHeight="33.0" prefWidth="86.0" stylesheets="@styles.css" text="Log In" textFill="#753d3d">
          <font>
             <Font size="16.0" />
          </font>
