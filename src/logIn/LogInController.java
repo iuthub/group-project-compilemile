@@ -8,10 +8,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import javax.xml.transform.sax.SAXTransformerFactory;
 import java.io.IOException;
+import java.sql.*;
 import java.sql.SQLException;
 
 
@@ -21,10 +23,27 @@ public class LogInController {
     @FXML
     public TextField txtUsername;
     @FXML
-    public PasswordField password;
+    public PasswordField txtPassword;
+    @FXML
+    public Label lblNotification;
+
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    ResultSet resultSet = null;
+//    @FXML
+//    public Button btnSignin;
+
+    public void initialize() {
+
+    }
+
+    public LogInController() {
+        connection = LogInRepository.connectDB();
+    }
 
     @FXML
-    public void goToLibrarian(ActionEvent event) {
+    public void handleLogIn(ActionEvent event) {
+        logIn();
 //        try {
 //            Parent root = FXMLLoader.load(getClass().getResource("/student/librarian.fxml"));
 //            Stage stage = new Stage();
@@ -34,6 +53,30 @@ public class LogInController {
 //        } catch (IOException exception) {
 //            exception.printStackTrace();
 //        }
+    }
+
+    private void logIn() {
+        String userName = txtUsername.getText();
+        String passWord = txtPassword.getText();
+
+        String sql = "SELECT * FROM users WHERE userName=? AND passWord=?";
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, userName);
+            preparedStatement.setString(2, passWord);
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (!resultSet.next()) {
+                lblNotification.setText("Enter correct Username or Password");
+            } else {
+                lblNotification.setTextFill(Color.GREEN);
+                lblNotification.setText("Login Successful\t...Redirecting...");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
 //    @FXML
