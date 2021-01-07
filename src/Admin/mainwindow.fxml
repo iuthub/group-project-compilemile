@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<?import Admin.Person?>
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="Admin.mainWindowController">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Close"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Delete"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <center>
+        <TabPane prefHeight="360.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <tabs>
+                <Tab text="Librarians">
+                    <VBox>
+                        <TableView>
+                            <columns>
+                                <TableColumn text="First Name">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="firstName"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Last Name">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="lastName"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Email Address">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="email"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                            </columns>
+                            <items>
+                                <!--                                <FXCollections fx:factory="observableArrayList">-->
+                                <!--                                    <Person firstName="Jacob" lastName="Smith"-->
+                                <!--                                            email="jacob.smith@example.com"/>-->
+                                <!--                                    <Person firstName="Isabella" lastName="Johnson"-->
+                                <!--                                            email="isabella.johnson@example.com"/>-->
+                                <!--                                    <Person firstName="Ethan" lastName="Williams"-->
+                                <!--                                            email="ethan.williams@example.com"/>-->
+                                <!--                                    <Person firstName="Emma" lastName="Jones"-->
+                                <!--                                            email="emma.jones@example.com"/>-->
+                                <!--                                    <Person firstName="Michael" lastName="Brown"-->
+                                <!--                                            email="michael.brown@example.com"/>-->
+                                <!--                                </FXCollections>-->
+
+                                <!--                            https://docs.oracle.com/javafx/2/fxml_get_started/fxml_tutorial_intermediate.htm-->
+                            </items>
+                        </TableView>
+                        <HBox prefHeight="20" prefWidth="200.0">
+                            <Button text="Add"/>
+                            <!--                            These two buttons below should be disabled until on of the users are not selected-->
+                            <Button text="Edit"/>
+                            <Button text="Delete"/>
+                        </HBox>
+                    </VBox>
+                </Tab>
+                <Tab text="Students">
+
+                    <VBox>
+                        <TableView>
+                            <columns>
+                                <TableColumn text="First Name">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="firstName"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Last Name">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="lastName"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Email Address">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="email"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                            </columns>
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <Person firstName="Jacob" lastName="Smith"
+                                            email="jacob.smith@example.com"/>
+                                    <Person firstName="Isabella" lastName="Johnson"
+                                            email="isabella.johnson@example.com"/>
+                                    <Person firstName="Ethan" lastName="Williams"
+                                            email="ethan.williams@example.com"/>
+                                    <Person firstName="Emma" lastName="Jones"
+                                            email="emma.jones@example.com"/>
+                                    <Person firstName="Michael" lastName="Brown"
+                                            email="michael.brown@example.com"/>
+                                </FXCollections>
+
+                                <!--                            https://docs.oracle.com/javafx/2/fxml_get_started/fxml_tutorial_intermediate.htm-->
+                            </items>
+                        </TableView>
+                        <HBox prefHeight="20" prefWidth="200.0">
+                            <Button text="Add"/>
+                            <!--                            These two buttons below should be disabled until on of the users are not selected-->
+                            <Button text="Edit"/>
+                            <Button text="Delete"/>
+                        </HBox>
+                    </VBox>
+                </Tab>
+                <Tab text="Books">
+                    <VBox>
+                        <TableView>
+                            <columns>
+                                <TableColumn text="Identification number">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="bookID"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Name of the book">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="bookName"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Subject">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="bookSubject"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Author">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="bookAuthor"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="ISBN">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="bookISBN"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Publish Date">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="bookPublishDate"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="In use status">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="bookInUseStatus"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="In Use (Student)">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="bookInStudent"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Borrow status">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="bookBorrowStatus"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="Borrowed Student">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="bookBorrowedStudent"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+
+                            </columns>
+                            <items>
+                                <!--                                <FXCollections fx:factory="observableArrayList">-->
+                                <!--                                    <Person firstName="Jacob" lastName="Smith"-->
+                                <!--                                            email="jacob.smith@example.com"/>-->
+                                <!--                                    <Person firstName="Isabella" lastName="Johnson"-->
+                                <!--                                            email="isabella.johnson@example.com"/>-->
+                                <!--                                    <Person firstName="Ethan" lastName="Williams"-->
+                                <!--                                            email="ethan.williams@example.com"/>-->
+                                <!--                                    <Person firstName="Emma" lastName="Jones"-->
+                                <!--                                            email="emma.jones@example.com"/>-->
+                                <!--                                    <Person firstName="Michael" lastName="Brown"-->
+                                <!--                                            email="michael.brown@example.com"/>-->
+                                <!--                                </FXCollections>-->
+
+                                <!--                            https://docs.oracle.com/javafx/2/fxml_get_started/fxml_tutorial_intermediate.htm-->
+                            </items>
+                        </TableView>
+                        <HBox prefHeight="20" prefWidth="200.0">
+                            <Button text="Add"/>
+                            <!--                            These two buttons below should be disabled until on of the users are not selected-->
+                            <Button text="Edit"/>
+                            <Button text="Delete"/>
+                        </HBox>
+                    </VBox>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+
+</BorderPane>
