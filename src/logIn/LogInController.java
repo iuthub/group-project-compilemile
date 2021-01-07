@@ -17,7 +17,7 @@ import java.sql.*;
 import java.sql.SQLException;
 
 
-public class LogInController {
+public class    LogInController {
     @FXML
     public ComboBox<String> box;
     @FXML
@@ -45,7 +45,31 @@ public class LogInController {
 
     @FXML
     public void handleLogIn(ActionEvent event) {
-
+        if (logIn()) {
+            if (role.equals("Admin")) {
+                try {
+                    Parent root = FXMLLoader.load(getClass().getResource("/Admin/adminWindow.fxml"));
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root, 650, 400));
+                    stage.show();
+                    ((Node)(event.getSource())).getScene().getWindow().hide();
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                }
+            } else if (role.equals("Librarian")) {
+                try {
+                    Parent root = FXMLLoader.load(getClass().getResource("/Librarian/librarianWindow.fxml"));
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root, 650, 400));
+                    stage.show();
+                    ((Node)(event.getSource())).getScene().getWindow().hide();
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                }
+            } else if (role.equals("Student")) {
+                System.out.println("Student");
+            }
+        }
     }
 
     private boolean logIn() {
