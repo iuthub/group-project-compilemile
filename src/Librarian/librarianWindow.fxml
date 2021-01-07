@@ -52,22 +52,22 @@
                                 </cellValueFactory>
                             </TableColumn>
                         </columns>
-                        <items>
-                            <FXCollections fx:factory="observableArrayList">
-                                <Person firstName="Jacob" lastName="Smith"
-                                        email="jacob.smith@example.com"/>
-                                <Person firstName="Isabella" lastName="Johnson"
-                                        email="isabella.johnson@example.com"/>
-                                <Person firstName="Ethan" lastName="Williams"
-                                        email="ethan.williams@example.com"/>
-                                <Person firstName="Emma" lastName="Jones"
-                                        email="emma.jones@example.com"/>
-                                <Person firstName="Michael" lastName="Brown"
-                                        email="michael.brown@example.com"/>
-                            </FXCollections>
+<!--                        <items>-->
+<!--                            <FXCollections fx:factory="observableArrayList">-->
+<!--                                <Person firstName="Jacob" lastName="Smith"-->
+<!--                                        email="jacob.smith@example.com"/>-->
+<!--                                <Person firstName="Isabella" lastName="Johnson"-->
+<!--                                        email="isabella.johnson@example.com"/>-->
+<!--                                <Person firstName="Ethan" lastName="Williams"-->
+<!--                                        email="ethan.williams@example.com"/>-->
+<!--                                <Person firstName="Emma" lastName="Jones"-->
+<!--                                        email="emma.jones@example.com"/>-->
+<!--                                <Person firstName="Michael" lastName="Brown"-->
+<!--                                        email="michael.brown@example.com"/>-->
+<!--                            </FXCollections>-->
 
-                            <!--                            https://docs.oracle.com/javafx/2/fxml_get_started/fxml_tutorial_intermediate.htm-->
-                        </items>
+<!--                            &lt;!&ndash;                            https://docs.oracle.com/javafx/2/fxml_get_started/fxml_tutorial_intermediate.htm&ndash;&gt;-->
+<!--                        </items>-->
                     </TableView>
                     <HBox prefHeight="20" prefWidth="200.0">
                         <Button text="Add"/>

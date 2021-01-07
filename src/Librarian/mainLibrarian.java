@@ -9,8 +9,8 @@ import javafx.stage.Stage;
 public class mainLibrarian extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("mainwindow.fxml"));
-        primaryStage.setTitle("Log In");
+        Parent root = FXMLLoader.load(getClass().getResource("librarianWindow.fxml"));
+        primaryStage.setTitle("Librarian");
         primaryStage.setScene(new Scene(root, 400, 350));
         primaryStage.show();
     }
