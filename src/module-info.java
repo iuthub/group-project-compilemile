@@ -4,4 +4,6 @@ module group.project.compilemile {
     requires java.sql;
 
     opens logIn;
+    opens Admin;
+    opens Librarian;
 }
