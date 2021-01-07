@@ -6,4 +6,5 @@ module group.project.compilemile {
     opens logIn;
     opens Admin;
     opens Librarian;
+    opens Student;
 }

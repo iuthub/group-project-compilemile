@@ -1,4 +1,4 @@
-package Admin;
+package Student;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,12 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class mainAdmin extends Application {
+public class mainStudent extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("adminWindow.fxml"));
-        primaryStage.setTitle("Admin");
-        primaryStage.setScene(new Scene(root, 600, 350));
+        Parent root = FXMLLoader.load(getClass().getResource("studentWindow.fxml"));
+        primaryStage.setTitle("Student");
+        primaryStage.setScene(new Scene(root, 400, 350));
         primaryStage.show();
     }
 

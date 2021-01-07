@@ -69,7 +69,16 @@ public class    LogInController {
                     exception.printStackTrace();
                 }
             } else if (role.equals("Student")) {
-                System.out.println("Student");
+                try {
+                    Parent root = FXMLLoader.load(getClass().getResource("/Student/studentWindow.fxml"));
+                    Stage stage = new Stage();
+                    stage.setTitle("Student Window");
+                    stage.setScene(new Scene(root, 650, 400));
+                    stage.show();
+                    ((Node)(event.getSource())).getScene().getWindow().hide();
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                }
             }
         }
     }
