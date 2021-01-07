@@ -30,6 +30,8 @@ public class LogInController {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
+
+    private String role = null;
 //    @FXML
 //    public Button btnSignin;
 
@@ -43,19 +45,10 @@ public class LogInController {
 
     @FXML
     public void handleLogIn(ActionEvent event) {
-        logIn();
-//        try {
-//            Parent root = FXMLLoader.load(getClass().getResource("/student/librarian.fxml"));
-//            Stage stage = new Stage();
-//            stage.setScene(new Scene(root, 650, 400));
-//            stage.show();
-//            ((Node)(event.getSource())).getScene().getWindow().hide();
-//        } catch (IOException exception) {
-//            exception.printStackTrace();
-//        }
+
     }
 
-    private void logIn() {
+    private boolean logIn() {
         String userName = txtUsername.getText();
         String passWord = txtPassword.getText();
 
@@ -70,33 +63,18 @@ public class LogInController {
 
             if (!resultSet.next()) {
                 lblNotification.setText("Enter correct Username or Password");
+                return false;
             } else {
                 lblNotification.setTextFill(Color.GREEN);
                 lblNotification.setText("Login Successful\t...Redirecting...");
+
+                role = resultSet.getString("role");
+
+                return true;
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            return false;
         }
     }
-
-//    @FXML
-//    public void btnSign() throws SQLException {
-//        Role role = Role.valueOf(box.getValue());
-//        String username = txtUsername.getText();
-//        String passwordStr = password.getText();
-//        String passwordConfirmStr = passwordConfirm.getText();
-//
-//        if (!passwordStr.equals(passwordConfirmStr)){
-//            Alert alert = new Alert(Alert.AlertType.ERROR);
-//            alert.setTitle("Passwords not matching");
-//            alert.setHeaderText("Ooops, there was an error!");
-//            alert.setContentText("Passwords must be identical");
-//
-//            alert.showAndWait();
-//        }
-//
-//        User user = new User(role, username, passwordStr);
-//        Repository repo = Repository.getInstance();
-//        repo.add(user);
-//    }
 }
