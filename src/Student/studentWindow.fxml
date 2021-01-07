@@ -122,9 +122,7 @@
                             </GridPane>
                         </HBox>
                         <HBox prefHeight="20" prefWidth="200.0" spacing="5">
-                            <Button text="Add" />
-                            <Button text="Edit" />
-                            <Button text="Delete" />
+                            <Button text="Return chosen book" />
                         </HBox>
                     </VBox>
                 </Tab>
