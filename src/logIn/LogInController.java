@@ -51,7 +51,7 @@ public class    LogInController {
                     Parent root = FXMLLoader.load(getClass().getResource("/Admin/adminWindow.fxml"));
                     Stage stage = new Stage();
                     stage.setTitle("Admin Window");
-                    stage.setScene(new Scene(root, 650, 400));
+                    stage.setScene(new Scene(root, 600, 400));
                     stage.show();
                     ((Node)(event.getSource())).getScene().getWindow().hide();
                 } catch (IOException exception) {
@@ -62,7 +62,7 @@ public class    LogInController {
                     Parent root = FXMLLoader.load(getClass().getResource("/Librarian/librarianWindow.fxml"));
                     Stage stage = new Stage();
                     stage.setTitle("Librarian Window");
-                    stage.setScene(new Scene(root, 650, 400));
+                    stage.setScene(new Scene(root, 600, 400));
                     stage.show();
                     ((Node)(event.getSource())).getScene().getWindow().hide();
                 } catch (IOException exception) {
@@ -73,7 +73,7 @@ public class    LogInController {
                     Parent root = FXMLLoader.load(getClass().getResource("/Student/studentWindow.fxml"));
                     Stage stage = new Stage();
                     stage.setTitle("Student Window");
-                    stage.setScene(new Scene(root, 650, 400));
+                    stage.setScene(new Scene(root, 600, 400));
                     stage.show();
                     ((Node)(event.getSource())).getScene().getWindow().hide();
                 } catch (IOException exception) {

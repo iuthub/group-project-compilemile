@@ -3,41 +3,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 <BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="Student.mainWindowController">
     <center>
         <TabPane prefHeight="360.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
             <tabs>
-                <Tab text="Students">
-                    <VBox>
-                    <TableView>
-                        <columns>
-                            <TableColumn text="First Name">
-                                <cellValueFactory>
-                                    <PropertyValueFactory property="firstName"/>
-                                </cellValueFactory>
-                            </TableColumn>
-                            <TableColumn text="Last Name">
-                                <cellValueFactory>
-                                    <PropertyValueFactory property="lastName"/>
-                                </cellValueFactory>
-                            </TableColumn>
-                            <TableColumn text="Username">
-                                <cellValueFactory>
-                                    <PropertyValueFactory property="userName"/>
-                                </cellValueFactory>
-                            </TableColumn>
-                        </columns>
-                    </TableView>
-                    <HBox prefHeight="20" prefWidth="200.0">
-                        <Button text="Add"/>
-                        <Button text="Edit"/>
-                        <Button text="Delete"/>
-                    </HBox>
-                    </VBox>
-                </Tab>
                 <Tab text="Books">
-                    <VBox>
+                    <VBox spacing="5">
                         <HBox spacing="10">
                             <TableView>
                                 <columns>
@@ -53,12 +26,12 @@
                                     </TableColumn>
                                     <TableColumn text="ISBN">
                                         <cellValueFactory>
-                                            <PropertyValueFactory property="bookISBN" />
+                                            <PropertyValueFactory property="" />
                                         </cellValueFactory>
                                     </TableColumn>
                                     <TableColumn text="Taken by">
                                         <cellValueFactory>
-                                            <PropertyValueFactory property="bookInStudent" />
+                                            <PropertyValueFactory property="" />
                                         </cellValueFactory>
                                     </TableColumn>
                                 </columns>
@@ -88,7 +61,7 @@
                 </Tab>
 
                 <Tab text="My books">
-                    <VBox>
+                    <VBox spacing="5">
                         <HBox spacing="10">
                             <TableView>
                                 <columns>
@@ -104,7 +77,7 @@
                                     </TableColumn>
                                     <TableColumn text="ISBN">
                                         <cellValueFactory>
-                                            <PropertyValueFactory property="bookISBN" />
+                                            <PropertyValueFactory property="" />
                                         </cellValueFactory>
                                     </TableColumn>
                                 </columns>
@@ -130,4 +103,12 @@
         </TabPane>
     </center>
 
+    <bottom>
+        <HBox alignment="BOTTOM_RIGHT">
+            <Button style="-fx-background-color: #00ffff;" text="Log out" onAction="#handleLogOut"/>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+        </HBox>
+    </bottom>
 </BorderPane>
