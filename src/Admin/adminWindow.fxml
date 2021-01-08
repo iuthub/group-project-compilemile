@@ -44,7 +44,7 @@
                             </GridPane>
                         </HBox>
                         <HBox prefHeight="20" prefWidth="200.0" spacing="5">
-                            <TextField fx:id="txtLibPassword" promptText="password" />
+                            <PasswordField fx:id="txtLibPassword" promptText="password" />
                             <TextField fx:id="txtLibFirstName" promptText="first name" />
                             <TextField fx:id="txtLibLastName" promptText="last name" />
                             <TextField fx:id="txtLibUsername" promptText="username" />
@@ -92,7 +92,7 @@
                         </HBox>
 
                         <HBox prefHeight="20" prefWidth="200.0" spacing="5">
-                            <TextField fx:id="txtStudPassword" promptText="password" />
+                            <PasswordField fx:id="txtStudPassword" promptText="password" />
                             <TextField fx:id="txtStudFirstName" promptText="first name" />
                             <TextField fx:id="txtStudLastName" promptText="last name" />
                             <TextField fx:id="txtStudUsername" promptText="username" />
