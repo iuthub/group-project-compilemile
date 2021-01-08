@@ -1,1 +1,0 @@
-//class must be deleted
