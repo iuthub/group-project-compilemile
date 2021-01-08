@@ -51,7 +51,7 @@
                         <TextField fx:id="txtStudUsername" promptText="username" />
 
                         <Button text="Add" onAction="#addStud"/>
-                        <Button text="Edit" />
+                        <Button text="Edit" onAction="#updateStudent"/>
                         <Button text="Delete" onAction="#deleteStudent"/>
                     </HBox>
                     </VBox>

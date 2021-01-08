@@ -15,7 +15,7 @@ public class UserRepository {
     private final String ADD_QUERY = "INSERT Into users(password, firstName, lastName, userName, role) VALUES(?,?,?,?,?)";
     private final String DELETE_QUERY = "DELETE FROM users WHERE id=?";
     private final String GET_LAST_ID = "SELECT MAX(id) FROM users";
-    private final String UPDATE_QUERY = "UPDATE users SET password=? ,firstName=?, lastName=?, userName=? WHERE id=?";
+    private final String UPDATE_QUERY = "UPDATE users SET password=? ,firstName=?, lastName=?, userName=?, role=? WHERE id=?";
 
     private Connection connection;
 
@@ -123,4 +123,15 @@ public class UserRepository {
         this.deleteStmt.executeUpdate();
     }
 
+    //    METHOD TO UPDATE USER
+    public void update(User user) throws SQLException {
+        this.updateStmt.setString(1, user.getPassword());
+        this.updateStmt.setString(2, user.getFirstName());
+        this.updateStmt.setString(3, user.getLastName());
+        this.updateStmt.setString(4, user.getUserName());
+        this.updateStmt.setString(5, user.getRole());
+        this.updateStmt.setString(6, user.getId());
+
+        this.updateStmt.executeUpdate();
+    }
 }

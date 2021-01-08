@@ -84,6 +84,48 @@ public class Controller {
         }
     }
 
+
+    @FXML
+    public void updateStudent() {
+        String userName = txtStudUsername.getText();
+        String password = txtStudPassword.getText();
+        try {
+            Connection connection = DriverManager.getConnection(DATA_BASE);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, userName);
+            preparedStatement.setString(2, password);
+
+            ResultSet result = preparedStatement.executeQuery();
+
+            if (result.next()) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Alert");
+                alert.setHeaderText("Existing data:");
+                alert.setContentText("This user is already in the system!\nPlease,create another one:)");
+
+                alert.showAndWait();
+            } else {
+                try {
+                    User user = (User) tblStudents.getSelectionModel().getSelectedItem();
+                    user.setId(user.getId());
+                    user.setPassword(txtStudPassword.getText());
+                    user.setFirstName(txtStudFirstName.getText());
+                    user.setLastName(txtStudLastName.getText());
+                    user.setUserName(txtStudUsername.getText());
+                    user.setRole(user.getRole());
+
+                    UserRepository.getInstance().update(user);
+                    this.studentList.set(studentList.indexOf(user),user);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
+
     public void initialize() {
         try {
             this.studentList = UserRepository.getInstance().getAllStudents();
