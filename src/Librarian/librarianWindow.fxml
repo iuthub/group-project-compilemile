@@ -52,7 +52,7 @@
 
                         <Button text="Add" />
                         <Button text="Edit" />
-                        <Button text="Delete" />
+                        <Button text="Delete" onAction="#deleteStudent"/>
                     </HBox>
                     </VBox>
                 </Tab>

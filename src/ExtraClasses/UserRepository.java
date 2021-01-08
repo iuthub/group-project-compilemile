@@ -85,5 +85,10 @@ public class UserRepository {
         return listOfStudents;
     }
 
+    //    METHOD TO DELETE USER
+    public void deleteUser(String id) throws SQLException {
+        this.deleteStmt.setString(1, id);
+        this.deleteStmt.executeUpdate();
+    }
 
 }

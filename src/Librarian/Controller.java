@@ -33,6 +33,16 @@ public class Controller {
     public TextField txtStudUsername;
 
 
+    @FXML
+    public void deleteStudent() {
+        try {
+            User user = (User) tblStudents.getSelectionModel().getSelectedItem();
+            UserRepository.getInstance().deleteUser(user.getId());
+            this.studentList.remove(user);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 
     public void initialize() {
         try {

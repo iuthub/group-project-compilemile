@@ -48,6 +48,27 @@ public class Controller {
 
 
 
+    @FXML
+    public void deleteLibrarian() {
+        try {
+            User user = (User) tblLibrarians.getSelectionModel().getSelectedItem();
+            UserRepository.getInstance().deleteUser(user.getId());
+            this.librarianList.remove(user);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+    @FXML
+    public void deleteStudent() {
+        try {
+            User user = (User) tblStudents.getSelectionModel().getSelectedItem();
+            UserRepository.getInstance().deleteUser(user.getId());
+            this.studentList.remove(user);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     public void initialize() {
         try {
             this.librarianList = UserRepository.getInstance().getAllLibrarians();
