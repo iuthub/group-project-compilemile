@@ -19,8 +19,6 @@ import java.sql.SQLException;
 
 public class    LogInController {
     @FXML
-    public ComboBox<String> box;
-    @FXML
     public TextField txtUsername;
     @FXML
     public PasswordField txtPassword;
@@ -32,8 +30,6 @@ public class    LogInController {
     ResultSet resultSet = null;
 
     private String role = null;
-//    @FXML
-//    public Button btnSignin;
 
     public void initialize() {
 

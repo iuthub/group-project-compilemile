@@ -14,18 +14,8 @@
             <Font name="ArnoPro-Smbd" size="31.0" />
          </font>
       </Label>
-<!--      <ComboBox fx:id="box" promptText="Choice the Role" layoutX="89.0" layoutY="112.0" prefHeight="25.0" prefWidth="174.0" stylesheets="@styles.css">-->
-<!--         <items>-->
-<!--            <FXCollections fx:factory="observableArrayList">-->
-<!--               <String fx:value="Student" />-->
-<!--               <String fx:value="Librarian" />-->
-<!--               <String fx:value="Admin" />-->
-<!--            </FXCollections>-->
-<!--         </items>-->
-<!--      </ComboBox>-->
       <TextField fx:id="txtUsername" layoutX="77.0" layoutY="170.0" prefHeight="25.0" prefWidth="233.0" promptText="Username" styleClass="text-field" stylesheets="@styles.css" />
       <PasswordField fx:id="txtPassword" layoutX="77.0" layoutY="228.0" prefHeight="25.0" prefWidth="233.0" promptText="Password" styleClass="text-field" stylesheets="@styles.css" />
-<!--      <PasswordField fx:id="passwordConfirm" layoutX="77.0" layoutY="284.0" prefHeight="25.0" prefWidth="233.0" promptText="Confirm password" styleClass="text-field" stylesheets="@styles.css" />-->
       <Button fx:id="btnSignin" id="glass-grey" layoutX="144.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleLogIn" prefHeight="33.0" prefWidth="86.0" stylesheets="@styles.css" text="Log In" textFill="#753d3d">
          <font>
             <Font size="16.0" />
