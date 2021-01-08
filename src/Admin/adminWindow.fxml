@@ -49,7 +49,7 @@
                             <TextField fx:id="txtLibLastName" promptText="last name" />
                             <TextField fx:id="txtLibUsername" promptText="username" />
 
-                            <Button text="Add" />
+                            <Button text="Add" onAction="#addLib"/>
                             <Button text="Edit" />
                             <Button text="Delete" onAction="#deleteLibrarian"/>
                         </HBox>
@@ -97,7 +97,7 @@
                             <TextField fx:id="txtStudLastName" promptText="last name" />
                             <TextField fx:id="txtStudUsername" promptText="username" />
 
-                            <Button text="Add" />
+                            <Button text="Add" onAction="#addStud"/>
                             <Button text="Edit" />
                             <Button text="Delete" onAction="#deleteStudent"/>
                         </HBox>

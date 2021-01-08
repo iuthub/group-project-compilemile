@@ -85,6 +85,38 @@ public class UserRepository {
         return listOfStudents;
     }
 
+    //      METHODS TO ADD USERS
+    public String addLibrarian(User user) throws SQLException {
+        this.addStmt.setString(1, user.getPassword());
+        this.addStmt.setString(2, user.getFirstName());
+        this.addStmt.setString(3, user.getLastName());
+        this.addStmt.setString(4, user.getUserName());
+        this.addStmt.setString(5, "Librarian");
+
+        if (this.addStmt.executeUpdate()>0) {
+            ResultSet lastResult = this.getLastIdStmt.executeQuery();
+            if (lastResult.next()) {
+                return lastResult.getString(1);
+            }
+        }
+        return null;
+    }
+    public String addStudent(User user) throws SQLException {
+        this.addStmt.setString(1, user.getPassword());
+        this.addStmt.setString(2, user.getFirstName());
+        this.addStmt.setString(3, user.getLastName());
+        this.addStmt.setString(4, user.getUserName());
+        this.addStmt.setString(5, "Student");
+
+        if (this.addStmt.executeUpdate()>0) {
+            ResultSet lastResult = this.getLastIdStmt.executeQuery();
+            if (lastResult.next()) {
+                return lastResult.getString(1);
+            }
+        }
+        return null;
+    }
+
     //    METHOD TO DELETE USER
     public void deleteUser(String id) throws SQLException {
         this.deleteStmt.setString(1, id);

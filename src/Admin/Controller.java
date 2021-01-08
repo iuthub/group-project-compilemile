@@ -9,12 +9,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Controller {
     private ObservableList<User> librarianList;
@@ -46,6 +47,78 @@ public class Controller {
     @FXML
     public TextField txtStudUsername;
 
+    private final String DATA_BASE="jdbc:derby:./db/dataBase";
+    private final String sql = "SELECT * FROM users WHERE userName=? AND password=?";
+
+    @FXML
+    public void addLib() {
+        User user = new User(
+                "",
+                txtLibPassword.getText(),
+                txtLibFirstName.getText(),
+                txtLibLastName.getText(),
+                txtLibUsername.getText(),
+                ""
+        );
+
+        try {
+            Connection connection = DriverManager.getConnection(DATA_BASE);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, user.getUserName());
+            preparedStatement.setString(2, user.getPassword());
+
+            ResultSet result = preparedStatement.executeQuery();
+
+            if (result.next()) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Alert");
+                alert.setHeaderText("Existing data:");
+                alert.setContentText("This user is already in the system!\nPlease,create another one :)");
+
+                alert.showAndWait();
+            } else {
+                user.setId(UserRepository.getInstance().addLibrarian(user));
+                this.librarianList.add(user);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void addStud() {
+        User user = new User(
+                "",
+                txtStudPassword.getText(),
+                txtStudFirstName.getText(),
+                txtStudLastName.getText(),
+                txtStudUsername.getText(),
+                ""
+        );
+
+        try {
+            Connection connection = DriverManager.getConnection(DATA_BASE);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, user.getUserName());
+            preparedStatement.setString(2, user.getPassword());
+
+            ResultSet result = preparedStatement.executeQuery();
+
+            if (result.next()) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Alert");
+                alert.setHeaderText("Existing data:");
+                alert.setContentText("This user is already in the system!\nPlease,create another one:)");
+
+                alert.showAndWait();
+            } else {
+                user.setId(UserRepository.getInstance().addStudent(user));
+                this.studentList.add(user);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 
 
     @FXML

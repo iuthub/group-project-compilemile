@@ -50,7 +50,7 @@
                         <TextField fx:id="txtStudLastName" promptText="last name" />
                         <TextField fx:id="txtStudUsername" promptText="username" />
 
-                        <Button text="Add" />
+                        <Button text="Add" onAction="#addStud"/>
                         <Button text="Edit" />
                         <Button text="Delete" onAction="#deleteStudent"/>
                     </HBox>
