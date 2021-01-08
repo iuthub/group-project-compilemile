@@ -16,17 +16,17 @@
                                 <columns>
                                     <TableColumn text="First Name">
                                         <cellValueFactory>
-                                            <PropertyValueFactory property="" />
+                                            <PropertyValueFactory property="firstName" />
                                         </cellValueFactory>
                                     </TableColumn>
                                     <TableColumn text="Last Name">
                                         <cellValueFactory>
-                                            <PropertyValueFactory property="" />
+                                            <PropertyValueFactory property="lastName" />
                                         </cellValueFactory>
                                     </TableColumn>
                                     <TableColumn text="Username">
                                         <cellValueFactory>
-                                            <PropertyValueFactory property="" />
+                                            <PropertyValueFactory property="userName" />
                                         </cellValueFactory>
                                     </TableColumn>
                                 </columns>
@@ -45,6 +45,7 @@
                         </HBox>
 
                     <HBox prefHeight="20" prefWidth="200.0" spacing="5">
+                        <TextField fx:id="txtStudPassword" promptText="password" />
                         <TextField fx:id="txtStudFirstName" promptText="first name" />
                         <TextField fx:id="txtStudLastName" promptText="last name" />
                         <TextField fx:id="txtStudUsername" promptText="username" />
