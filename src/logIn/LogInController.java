@@ -97,7 +97,7 @@ public class    LogInController {
             resultSet = preparedStatement.executeQuery();
 
             if (!resultSet.next()) {
-                lblNotification.setText("Enter correct Username or Password");
+                lblNotification.setText("ERROR: Username or Password is incorrect");
                 return false;
             } else {
                 lblNotification.setTextFill(Color.GREEN);
