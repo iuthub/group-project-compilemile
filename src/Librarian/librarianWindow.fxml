@@ -5,14 +5,14 @@
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ExtraClasses.Constructor">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Librarian.Controller">
     <center>
         <TabPane prefHeight="360.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
             <tabs>
                 <Tab text="Students">
                     <VBox spacing="5">
                         <HBox spacing="10">
-                            <TableView>
+                            <TableView fx:id="tblStudents">
                                 <columns>
                                     <TableColumn text="First Name">
                                         <cellValueFactory>

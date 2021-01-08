@@ -5,14 +5,14 @@
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ExtraClasses.Constructor">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Admin.Controller">
     <center>
         <TabPane prefHeight="360.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
             <tabs>
                 <Tab text="Librarians">
                     <VBox spacing="5">
                         <HBox spacing="10">
-                            <TableView>
+                            <TableView fx:id="tblLibrarians">
                                 <columns>
                                     <TableColumn text="First Name">
                                         <cellValueFactory>
@@ -44,7 +44,7 @@
                             </GridPane>
                         </HBox>
                         <HBox prefHeight="20" prefWidth="200.0" spacing="5">
-                            <TextField fx:id="txtLibrarianPassword" promptText="password" />
+                            <TextField fx:id="txtLibPassword" promptText="password" />
                             <TextField fx:id="txtLibFirstName" promptText="first name" />
                             <TextField fx:id="txtLibLastName" promptText="last name" />
                             <TextField fx:id="txtLibUsername" promptText="username" />
@@ -59,11 +59,11 @@
                 <Tab text="Students">
                     <VBox spacing="5">
                         <HBox spacing="10">
-                            <TableView>
+                            <TableView fx:id="tblStudents">
                                 <columns>
                                     <TableColumn text="First Name">
                                         <cellValueFactory>
-                                            <PropertyValueFactory property="firsName" />
+                                            <PropertyValueFactory property="firstName" />
                                         </cellValueFactory>
                                     </TableColumn>
                                     <TableColumn text="Last Name">
