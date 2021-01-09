@@ -10,6 +10,7 @@
         <TabPane prefHeight="360.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
             <tabs>
                 <Tab text="Students">
+
                     <VBox spacing="5">
                         <HBox spacing="10">
                             <TableView fx:id="tblStudents">
@@ -30,6 +31,9 @@
                                         </cellValueFactory>
                                     </TableColumn>
                                 </columns>
+                        <HBox.margin>
+                           <Insets />
+                        </HBox.margin>
                             </TableView>
                             <GridPane prefHeight="305.0" prefWidth="339.0" style="-fx-border-color: #888888;">
                                 <columnConstraints>
@@ -50,9 +54,9 @@
                         <TextField fx:id="txtStudLastName" promptText="last name" />
                         <TextField fx:id="txtStudUsername" promptText="username" />
 
-                        <Button text="Add" onAction="#addStud"/>
-                        <Button text="Edit" onAction="#updateStudent"/>
-                        <Button text="Delete" onAction="#deleteStudent"/>
+                        <Button onAction="#addStud" text="Add" />
+                        <Button onAction="#updateStudent" text="Edit" />
+                        <Button onAction="#deleteStudent" text="Delete" />
                     </HBox>
                     </VBox>
                 </Tab>

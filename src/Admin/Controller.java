@@ -12,8 +12,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,11 +27,11 @@ public class Controller {
     private ObservableList<Books> bookList;
 
     @FXML
-    public TableView tblLibrarians;
+    public TableView<User> tblLibrarians;
     @FXML
-    public TableView tblStudents;
+    public TableView<User> tblStudents;
     @FXML
-    public TableView tblBooks;
+    public TableView<Books> tblBooks;
 
     //    Librarian's TextFields
     @FXML
@@ -52,6 +54,7 @@ public class Controller {
     @FXML
     public TextField txtStudUsername;
 
+
     //     Books' TextFields
     @FXML
     public TextField txtTitle;
@@ -61,6 +64,45 @@ public class Controller {
     public TextField txtISBN;
     @FXML
     public TextField txtPublishDate;
+
+
+    //      Labels For Librarian Details
+    @FXML
+    public Label lblLibrarianId;
+    @FXML
+    public Label lblLibrarianFirstName;
+    @FXML
+    public Label lblLibrarianLastName;
+    @FXML
+    public Label lblLibrarianUsername;
+    @FXML
+    public Label lblLibrarianPassword;
+
+    //      Labels For Student Details
+    @FXML
+    public Label lblStudentId;
+    @FXML
+    public Label lblStudentFirstName;
+    @FXML
+    public Label lblStudentLastName;
+    @FXML
+    public Label lblStudentUsername;
+    @FXML
+    public Label lblStudentPassword;
+
+    //      Labels For Book Details
+    @FXML
+    public Label lblBookId;
+    @FXML
+    public Label lblBookTitle;
+    @FXML
+    public Label lblBookAuthor;
+    @FXML
+    public Label lblBookISBN;
+    @FXML
+    public Label lblBookPubDate;
+    @FXML
+    public Label lblBookTakenBy;
 
     private final String DATA_BASE="jdbc:derby:./db/dataBase";
     private final String sql = "SELECT * FROM users WHERE userName=? AND password=?";
@@ -309,5 +351,33 @@ public class Controller {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
+    }
+
+    @FXML
+    public void displayLibrarianDetails(MouseEvent mouseEvent) {
+        lblLibrarianId.setText(tblLibrarians.getSelectionModel().getSelectedItem().getId());
+        lblLibrarianFirstName.setText(tblLibrarians.getSelectionModel().getSelectedItem().getFirstName());
+        lblLibrarianLastName.setText(tblLibrarians.getSelectionModel().getSelectedItem().getLastName());
+        lblLibrarianUsername.setText(tblLibrarians.getSelectionModel().getSelectedItem().getUserName());
+        lblLibrarianPassword.setText(tblLibrarians.getSelectionModel().getSelectedItem().getPassword());
+    }
+
+    @FXML
+    public void displayStudentDetails(MouseEvent mouseEvent) {
+        lblStudentId.setText(tblStudents.getSelectionModel().getSelectedItem().getId());
+        lblStudentFirstName.setText(tblStudents.getSelectionModel().getSelectedItem().getFirstName());
+        lblStudentLastName.setText(tblStudents.getSelectionModel().getSelectedItem().getLastName());
+        lblStudentUsername.setText(tblStudents.getSelectionModel().getSelectedItem().getUserName());
+        lblStudentPassword.setText(tblStudents.getSelectionModel().getSelectedItem().getPassword());
+    }
+
+    @FXML
+    public void displayBookDetails(MouseEvent mouseEvent) {
+        lblBookId.setText(tblBooks.getSelectionModel().getSelectedItem().getBookID());
+        lblBookTitle.setText(tblBooks.getSelectionModel().getSelectedItem().getTitle());
+        lblBookAuthor.setText(tblBooks.getSelectionModel().getSelectedItem().getAuthor());
+        lblBookISBN.setText(tblBooks.getSelectionModel().getSelectedItem().getIsbn());
+        lblBookPubDate.setText(tblBooks.getSelectionModel().getSelectedItem().getPublishDate());
+        lblBookTakenBy.setText(tblBooks.getSelectionModel().getSelectedItem().getTakenBy());
     }
 }
