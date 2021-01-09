@@ -21,7 +21,7 @@ INSERT INTO users (password, firstName, lastName, userName, role)
 VALUES
     ('7513061', 'Ulugbek', 'Yarkinov', 'Uuu', 'Admin'),
     ('8044321', 'Zufarbek', 'Zufarbekov', 'Zzz', 'Librarian'),
-    ('1234567', 'Bois', 'Boiskhonov', 'Bbb', 'Student');
+    ('1234567', 'Boiss', 'Boiskhonov', 'Bbb', 'Student');
 
 INSERT INTO books (state, title, author, isbn)
 VALUES
