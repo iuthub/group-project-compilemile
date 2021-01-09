@@ -10,8 +10,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,9 +24,37 @@ public class Controller {
     private ObservableList<User> studentList;
 
     @FXML
-    public TableView tblLibrarians;
+    public TableView<User> tblLibrarians;
     @FXML
-    public TableView tblStudents;
+    public TableView<User> tblStudents;
+
+    //Labels For Displaying Librarian Details
+    @FXML
+    public Label lblFirstName;
+    @FXML
+    public Label lblLastName;
+    @FXML
+    public Label lblUsername;
+    @FXML
+    public Label lblPassword;
+    @FXML
+    public Label lblRole;
+    @FXML
+    public Label lblId;
+
+    //Labels For Displaying Student Details
+    @FXML
+    public Label lblStudentId;
+    @FXML
+    public Label lblStudentFirstName;
+    @FXML
+    public Label lblStudentLastName;
+    @FXML
+    public Label lblStudentUsername;
+    @FXML
+    public Label lblStudentPassword;
+    @FXML
+    public Label lblStudentRole;
 
     //    Librarian's TextFields
     @FXML
@@ -244,5 +274,27 @@ public class Controller {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
+    }
+
+    // Method for displaying librarian's details
+    @FXML
+    public void displayLibrarianDetails(MouseEvent mouseEvent) {
+        lblId.setText(tblLibrarians.getSelectionModel().getSelectedItem().getId());
+        lblFirstName.setText(tblLibrarians.getSelectionModel().getSelectedItem().getFirstName());
+        lblLastName.setText(tblLibrarians.getSelectionModel().getSelectedItem().getLastName());
+        lblUsername.setText(tblLibrarians.getSelectionModel().getSelectedItem().getUserName());
+        lblPassword.setText(tblLibrarians.getSelectionModel().getSelectedItem().getPassword());
+        lblRole.setText(tblLibrarians.getSelectionModel().getSelectedItem().getRole());
+    }
+
+    // Method for displaying student's details
+    @FXML
+    public void displayStudentDetails(MouseEvent mouseEvent) {
+        lblStudentId.setText(tblStudents.getSelectionModel().getSelectedItem().getId());
+        lblStudentFirstName.setText(tblStudents.getSelectionModel().getSelectedItem().getFirstName());
+        lblStudentLastName.setText(tblStudents.getSelectionModel().getSelectedItem().getLastName());
+        lblStudentUsername.setText(tblStudents.getSelectionModel().getSelectedItem().getUserName());
+        lblStudentPassword.setText(tblStudents.getSelectionModel().getSelectedItem().getPassword());
+        lblStudentRole.setText(tblStudents.getSelectionModel().getSelectedItem().getRole());
     }
 }
