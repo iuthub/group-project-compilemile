@@ -60,31 +60,36 @@
                 <Tab text="Books">
                     <VBox spacing="5">
                         <HBox spacing="10">
-                            <TableView>
+                            <TableView fx:id="tblBooks">
                                 <columns>
                                     <TableColumn text="Title">
                                         <cellValueFactory>
-                                            <PropertyValueFactory property="" />
+                                            <PropertyValueFactory property="title" />
                                         </cellValueFactory>
                                     </TableColumn>
                                     <TableColumn text="Author">
                                         <cellValueFactory>
-                                            <PropertyValueFactory property="" />
+                                            <PropertyValueFactory property="author" />
                                         </cellValueFactory>
                                     </TableColumn>
                                     <TableColumn text="ISBN">
                                         <cellValueFactory>
-                                            <PropertyValueFactory property="" />
+                                            <PropertyValueFactory property="isbn" />
                                         </cellValueFactory>
                                     </TableColumn>
-                                    <TableColumn text="Taken by">
+                                    <TableColumn text="Publish Date">
                                         <cellValueFactory>
-                                            <PropertyValueFactory property="" />
+                                            <PropertyValueFactory property="publishDate" />
                                         </cellValueFactory>
                                     </TableColumn>
+                                    <!--                                    <TableColumn text="Taken by">-->
+                                    <!--                                        <cellValueFactory>-->
+                                    <!--                                            <PropertyValueFactory property="takenBy" />-->
+                                    <!--                                        </cellValueFactory>-->
+                                    <!--                                    </TableColumn>-->
                                 </columns>
                             </TableView>
-                            <GridPane prefHeight="305.0" prefWidth="262.0" style="-fx-border-color: #888888;">
+                            <GridPane prefHeight="306.0" prefWidth="287.0" style="-fx-border-color: #888888;">
                                 <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -97,13 +102,15 @@
                             </GridPane>
                         </HBox>
                         <HBox prefHeight="20" prefWidth="200.0" spacing="5">
-                            <TextField fx:id="txtTitle" promptText="title" />
-                            <TextField fx:id="txtAuthor" promptText="author" />
-                            <TextField fx:id="txtISBN" promptText="isbn" />
+                            <TextField fx:id="txtTitle" prefHeight="25.0" prefWidth="100.0" promptText="title" />
+                            <TextField fx:id="txtAuthor" prefHeight="25.0" prefWidth="100.0" promptText="author" />
+                            <TextField fx:id="txtISBN" prefHeight="25.0" prefWidth="100.0" promptText="isbn" />
+                            <TextField fx:id="txtPublishDate" prefHeight="25.0" prefWidth="100.0" promptText="publish date" />
+                            <!--                            <TextField fx:id="txtTakenBy" prefHeight="25.0" prefWidth="100.0" promptText="taken by" />-->
 
-                            <Button text="Add" />
-                            <Button text="Edit" />
-                            <Button text="Delete" />
+                            <Button onAction="#addBook" prefWidth="50.0" text="Add" />
+                            <Button onAction="#updateBook" prefWidth="50.0" text="Edit" />
+                            <Button onAction="#deleteBook" prefWidth="60.0" text="Delete" />
                         </HBox>
                     </VBox>
                 </Tab>

@@ -12,28 +12,33 @@
                 <Tab text="Books">
                     <VBox spacing="5">
                         <HBox spacing="10">
-                            <TableView>
+                            <TableView fx:id="tblBooks">
                                 <columns>
                                     <TableColumn text="Title">
                                         <cellValueFactory>
-                                            <PropertyValueFactory property="" />
+                                            <PropertyValueFactory property="title" />
                                         </cellValueFactory>
                                     </TableColumn>
                                     <TableColumn text="Author">
                                         <cellValueFactory>
-                                            <PropertyValueFactory property="" />
+                                            <PropertyValueFactory property="author" />
                                         </cellValueFactory>
                                     </TableColumn>
                                     <TableColumn text="ISBN">
                                         <cellValueFactory>
-                                            <PropertyValueFactory property="" />
+                                            <PropertyValueFactory property="isbn" />
                                         </cellValueFactory>
                                     </TableColumn>
-                                    <TableColumn text="Taken by">
+                                    <TableColumn text="Publish Date">
                                         <cellValueFactory>
-                                            <PropertyValueFactory property="" />
+                                            <PropertyValueFactory property="publishDate" />
                                         </cellValueFactory>
                                     </TableColumn>
+                                    <!--                                    <TableColumn text="Taken by">-->
+                                    <!--                                        <cellValueFactory>-->
+                                    <!--                                            <PropertyValueFactory property="takenBy" />-->
+                                    <!--                                        </cellValueFactory>-->
+                                    <!--                                    </TableColumn>-->
                                 </columns>
                             </TableView>
                             <GridPane prefHeight="335.0" prefWidth="264.0" style="-fx-border-color: #888888;">

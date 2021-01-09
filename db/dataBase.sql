@@ -11,10 +11,11 @@ CREATE TABLE users(
 );
 CREATE TABLE books(
     bookID INT NOT NULL GENERATED ALWAYS AS IDENTITY,
-    state INT NOT NULL,
+    takenBy INT NOT NULL,
     title VARCHAR(20) NOT NULL,
     author VARCHAR(20) NOT NULL,
-    isbn VARCHAR(20) NOT NULL
+    isbn VARCHAR(20) NOT NULL,
+    publishDate VARCHAR(20) NOT NULL
 );
 
 INSERT INTO users (password, firstName, lastName, userName, role)
@@ -23,7 +24,7 @@ VALUES
     ('8044321', 'Zufarbek', 'Zufarbekov', 'Zzz', 'Librarian'),
     ('1234567', 'Bois', 'Boiskhonov', 'Bbb', 'Student');
 
-INSERT INTO books (state, title, author, isbn)
+INSERT INTO books (takenBy, title, author, isbn, publishDate)
 VALUES
-    (1,'Academic English 3','Unknown','500520'),
-    (1,'OOP2','Unknown','100123');
+    (1,'Academic English 3','Unknown','500520', '12.01.2009'),
+    (1,'OOP2','Unknown','100123', '03.12.2015');

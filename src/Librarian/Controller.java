@@ -1,5 +1,7 @@
 package Librarian;
 
+import ExtraClasses.BookRepository;
+import ExtraClasses.Books;
 import ExtraClasses.User;
 import ExtraClasses.UserRepository;
 import javafx.collections.ObservableList;
@@ -19,6 +21,7 @@ import java.sql.*;
 
 public class Controller {
     private ObservableList<User> studentList;
+    private ObservableList<Books> bookList;
 
     @FXML
     public TableView tblStudents;
@@ -32,6 +35,18 @@ public class Controller {
     public TextField txtStudLastName;
     @FXML
     public TextField txtStudUsername;
+
+    // Books' TextFields
+    @FXML
+    public TableView tblBooks;
+    @FXML
+    public TextField txtTitle;
+    @FXML
+    public TextField txtAuthor;
+    @FXML
+    public TextField txtISBN;
+    @FXML
+    public TextField txtPublishDate;
 
     private final String DATA_BASE="jdbc:derby:./db/dataBase";
     private final String sql = "SELECT * FROM users WHERE userName=? AND password=?";
@@ -126,10 +141,60 @@ public class Controller {
 
     }
 
+    //Books' add/delete/edit logic
+    @FXML
+    public void addBook() {
+        Books book = new Books(
+                "",
+                "1",
+                txtTitle.getText(),
+                txtAuthor.getText(),
+                txtISBN.getText(),
+                txtPublishDate.getText()
+        );
+        try {
+            book.setBookID(BookRepository.getInstance().add(book));
+            this.bookList.add(book);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void updateBook() {
+        try {
+            Books book = (Books) tblBooks.getSelectionModel().getSelectedItem();
+            book.setBookID(book.getBookID());
+            book.setTakenBy("1");
+            book.setTitle(txtTitle.getText());
+            book.setAuthor(txtAuthor.getText());
+            book.setIsbn(txtISBN.getText());
+            book.setPublishDate(txtPublishDate.getText());
+
+            BookRepository.getInstance().update(book);
+            this.bookList.set(bookList.indexOf(book),book);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void deleteBook() {
+        try {
+            Books book = (Books) tblBooks.getSelectionModel().getSelectedItem();
+            BookRepository.getInstance().delete(book.getBookID());
+            this.bookList.remove(book);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     public void initialize() {
         try {
             this.studentList = UserRepository.getInstance().getAllStudents();
             this.tblStudents.setItems(studentList);
+            this.bookList = BookRepository.getInstance().getAllBooks();
+            this.tblBooks.setItems(bookList);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
