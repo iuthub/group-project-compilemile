@@ -123,7 +123,7 @@ public class UserRepository {
         this.deleteStmt.executeUpdate();
     }
 
-    //    METHOD TO UPDATE USER
+    //    METHOD TO UPDATE user
     public void update(User user) throws SQLException {
         this.updateStmt.setString(1, user.getPassword());
         this.updateStmt.setString(2, user.getFirstName());
