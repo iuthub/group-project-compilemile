@@ -12,6 +12,20 @@
             <tabs>
                 <Tab text="Books">
                     <VBox spacing="5">
+                        <HBox spacing="5">
+                            <Label alignment="BOTTOM_RIGHT" text="Find book by: ">
+                                <HBox.margin>
+                                    <Insets top="2.0" />
+                                </HBox.margin>
+                                <font>
+                                    <Font size="14.0" />
+                                </font></Label>
+                            <ChoiceBox fx:id="choiceBox" prefHeight="25.0" prefWidth="104.0" />
+                            <TextField fx:id="txtFilter" onKeyReleased="#filter" promptText="search..." />
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                        </HBox>
                         <HBox spacing="10">
                             <TableView fx:id="tblBooks" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#displayBookDetails" prefHeight="336.0" prefWidth="394.0">
                                 <columns>
