@@ -20,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 import java.util.function.Predicate;
 
@@ -409,30 +410,42 @@ public class Controller {
     }
 
     @FXML
-    public void displayLibrarianDetails(MouseEvent mouseEvent) {
-        lblLibrarianId.setText(tblLibrarians.getSelectionModel().getSelectedItem().getId());
-        lblLibrarianFirstName.setText(tblLibrarians.getSelectionModel().getSelectedItem().getFirstName());
-        lblLibrarianLastName.setText(tblLibrarians.getSelectionModel().getSelectedItem().getLastName());
-        lblLibrarianUsername.setText(tblLibrarians.getSelectionModel().getSelectedItem().getUserName());
-        lblLibrarianPassword.setText(tblLibrarians.getSelectionModel().getSelectedItem().getPassword());
+    public void displayLibrarianDetails() {
+        try{
+            lblLibrarianId.setText(tblLibrarians.getSelectionModel().getSelectedItem().getId());
+            lblLibrarianFirstName.setText(tblLibrarians.getSelectionModel().getSelectedItem().getFirstName());
+            lblLibrarianLastName.setText(tblLibrarians.getSelectionModel().getSelectedItem().getLastName());
+            lblLibrarianUsername.setText(tblLibrarians.getSelectionModel().getSelectedItem().getUserName());
+            lblLibrarianPassword.setText(tblLibrarians.getSelectionModel().getSelectedItem().getPassword());
+        }catch(RuntimeException e){
+            System.out.println("Not selected");
+        }
     }
 
     @FXML
-    public void displayStudentDetails(MouseEvent mouseEvent) {
+    public void displayStudentDetails() {
+        try{
         lblStudentId.setText(tblStudents.getSelectionModel().getSelectedItem().getId());
         lblStudentFirstName.setText(tblStudents.getSelectionModel().getSelectedItem().getFirstName());
         lblStudentLastName.setText(tblStudents.getSelectionModel().getSelectedItem().getLastName());
         lblStudentUsername.setText(tblStudents.getSelectionModel().getSelectedItem().getUserName());
         lblStudentPassword.setText(tblStudents.getSelectionModel().getSelectedItem().getPassword());
+        }catch(RuntimeException e){
+            System.out.println("Not selected");
+        }
     }
 
     @FXML
-    public void displayBookDetails(MouseEvent mouseEvent) {
+    public void displayBookDetails() {
+        try {
         lblBookId.setText(tblBooks.getSelectionModel().getSelectedItem().getBookID());
         lblBookTitle.setText(tblBooks.getSelectionModel().getSelectedItem().getTitle());
         lblBookAuthor.setText(tblBooks.getSelectionModel().getSelectedItem().getAuthor());
         lblBookISBN.setText(tblBooks.getSelectionModel().getSelectedItem().getIsbn());
         lblBookPubDate.setText(tblBooks.getSelectionModel().getSelectedItem().getPublishDate());
         lblBookTakenBy.setText(tblBooks.getSelectionModel().getSelectedItem().getTakenBy());
+        }catch(RuntimeException e){
+            System.out.println("Not selected");
+        }
     }
 }

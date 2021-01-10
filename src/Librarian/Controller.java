@@ -255,22 +255,30 @@ public class Controller {
     }
 
     @FXML
-    public void displayStudentDetails(MouseEvent mouseEvent) {
-        lblStudentId.setText(tblStudents.getSelectionModel().getSelectedItem().getId());
-        lblStudentFirstName.setText(tblStudents.getSelectionModel().getSelectedItem().getFirstName());
-        lblStudentLastName.setText(tblStudents.getSelectionModel().getSelectedItem().getLastName());
-        lblStudentUsername.setText(tblStudents.getSelectionModel().getSelectedItem().getUserName());
-        lblStudentPassword.setText(tblStudents.getSelectionModel().getSelectedItem().getPassword());
+    public void displayStudentDetails() {
+        try {
+            lblStudentId.setText(tblStudents.getSelectionModel().getSelectedItem().getId());
+            lblStudentFirstName.setText(tblStudents.getSelectionModel().getSelectedItem().getFirstName());
+            lblStudentLastName.setText(tblStudents.getSelectionModel().getSelectedItem().getLastName());
+            lblStudentUsername.setText(tblStudents.getSelectionModel().getSelectedItem().getUserName());
+            lblStudentPassword.setText(tblStudents.getSelectionModel().getSelectedItem().getPassword());
+        }catch(RuntimeException e){
+        System.out.println("Not selected");
+    }
     }
 
     @FXML
-    public void displayBookDetails(MouseEvent mouseEvent) {
-        lblBookId.setText(tblBooks.getSelectionModel().getSelectedItem().getBookID());
-        lblBookTitle.setText(tblBooks.getSelectionModel().getSelectedItem().getTitle());
-        lblBookAuthor.setText(tblBooks.getSelectionModel().getSelectedItem().getAuthor());
-        lblBookISBN.setText(tblBooks.getSelectionModel().getSelectedItem().getIsbn());
-        lblBookPubDate.setText(tblBooks.getSelectionModel().getSelectedItem().getPublishDate());
-        lblBookTakenBy.setText(tblBooks.getSelectionModel().getSelectedItem().getTakenBy());
+    public void displayBookDetails() {
+        try {
+            lblBookId.setText(tblBooks.getSelectionModel().getSelectedItem().getBookID());
+            lblBookTitle.setText(tblBooks.getSelectionModel().getSelectedItem().getTitle());
+            lblBookAuthor.setText(tblBooks.getSelectionModel().getSelectedItem().getAuthor());
+            lblBookISBN.setText(tblBooks.getSelectionModel().getSelectedItem().getIsbn());
+            lblBookPubDate.setText(tblBooks.getSelectionModel().getSelectedItem().getPublishDate());
+            lblBookTakenBy.setText(tblBooks.getSelectionModel().getSelectedItem().getTakenBy());
+        }catch(RuntimeException e){
+            System.out.println("Not selected");
+        }
     }
 
     @FXML
