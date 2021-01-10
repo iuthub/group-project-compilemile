@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -48,6 +49,7 @@ public class    LogInController {
                     Stage stage = new Stage();
                     stage.setTitle("Admin Window");
                     stage.setScene(new Scene(root, 760, 500));
+                    stage.getIcons().add(new Image("/books.png"));
                     stage.show();
                     ((Node)(event.getSource())).getScene().getWindow().hide();
                 } catch (IOException exception) {
@@ -59,6 +61,7 @@ public class    LogInController {
                     Stage stage = new Stage();
                     stage.setTitle("Librarian Window");
                     stage.setScene(new Scene(root, 760, 500));
+                    stage.getIcons().add(new Image("/books.png"));
                     stage.show();
                     ((Node)(event.getSource())).getScene().getWindow().hide();
                 } catch (IOException exception) {
@@ -70,6 +73,7 @@ public class    LogInController {
                     Stage stage = new Stage();
                     stage.setTitle("Student Window");
                     stage.setScene(new Scene(root, 450, 400));
+                    stage.getIcons().add(new Image("/books.png"));
                     stage.show();
                     ((Node)(event.getSource())).getScene().getWindow().hide();
                 } catch (IOException exception) {
