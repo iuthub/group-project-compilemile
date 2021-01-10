@@ -16,6 +16,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -88,6 +89,7 @@ public class Controller {
             Stage stage = new Stage();
             stage.setScene(new Scene(root, 400, 350));
             stage.setTitle("Log In");
+            stage.getIcons().add(new Image("/books.png"));
             stage.show();
             ((Node)(event.getSource())).getScene().getWindow().hide();
         } catch (IOException exception) {
