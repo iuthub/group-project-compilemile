@@ -2,8 +2,7 @@ package Librarian;
 
 import ExtraClasses.BookRepository;
 import ExtraClasses.Books;
-import ExtraClasses.User;
-import ExtraClasses.UserRepository;
+import ExtraClasses.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -18,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,6 +25,13 @@ import java.sql.*;
 import java.util.function.Predicate;
 
 public class Controller {
+    @FXML
+    public TextField txtGiveBookUserName;
+    @FXML
+    public PasswordField pwGiveBookPassword;
+    @FXML
+    public Button btnGiveBook;
+
     private ObservableList<User> studentList;
     private ObservableList<Books> bookList;
 
@@ -84,7 +91,7 @@ public class Controller {
     @FXML
     public Label lblBookTakenBy;
 
-    private final String DATA_BASE="jdbc:derby:./db/dataBase";
+    private final String DATA_BASE = "jdbc:derby:./db/dataBase";
     private final String sql = "SELECT * FROM users WHERE userName=? AND password=?";
 
     @FXML
@@ -121,7 +128,6 @@ public class Controller {
             throwables.printStackTrace();
         }
     }
-
 
 
     @FXML
@@ -166,7 +172,7 @@ public class Controller {
                     user.setRole(user.getRole());
 
                     UserRepository.getInstance().update(user);
-                    this.studentList.set(studentList.indexOf(user),user);
+                    this.studentList.set(studentList.indexOf(user), user);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
@@ -208,7 +214,7 @@ public class Controller {
             book.setPublishDate(txtPublishDate.getText());
 
             BookRepository.getInstance().update(book);
-            this.bookList.set(bookList.indexOf(book),book);
+            this.bookList.set(bookList.indexOf(book), book);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -231,7 +237,7 @@ public class Controller {
             this.tblStudents.setItems(studentList);
             this.bookList = BookRepository.getInstance().getAllBooks();
             this.tblBooks.setItems(bookList);
-            ObservableList<String> choices = FXCollections.observableArrayList( "Title","Author Name");
+            ObservableList<String> choices = FXCollections.observableArrayList("Title", "Author Name");
             this.choiceBox.setItems(choices);
             this.choiceBox.setValue("Title");
         } catch (SQLException throwables) {
@@ -248,7 +254,7 @@ public class Controller {
             stage.setTitle("Log In");
             stage.getIcons().add(new Image("/books.png"));
             stage.show();
-            ((Node)(event.getSource())).getScene().getWindow().hide();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (IOException exception) {
             exception.printStackTrace();
         }
@@ -262,9 +268,9 @@ public class Controller {
             lblStudentLastName.setText(tblStudents.getSelectionModel().getSelectedItem().getLastName());
             lblStudentUsername.setText(tblStudents.getSelectionModel().getSelectedItem().getUserName());
             lblStudentPassword.setText(tblStudents.getSelectionModel().getSelectedItem().getPassword());
-        }catch(RuntimeException e){
-        System.out.println("Not selected");
-    }
+        } catch (RuntimeException e) {
+            System.out.println("Not selected");
+        }
     }
 
     @FXML
@@ -276,7 +282,7 @@ public class Controller {
             lblBookISBN.setText(tblBooks.getSelectionModel().getSelectedItem().getIsbn());
             lblBookPubDate.setText(tblBooks.getSelectionModel().getSelectedItem().getPublishDate());
             lblBookTakenBy.setText(tblBooks.getSelectionModel().getSelectedItem().getTakenBy());
-        }catch(RuntimeException e){
+        } catch (RuntimeException e) {
             System.out.println("Not selected");
         }
     }
@@ -294,9 +300,9 @@ public class Controller {
                     txtFilter.textProperty().addListener(((observableValue, oldValue, newValue) -> {
                         filteredList.setPredicate((Predicate<? super Books>) (Books book) -> {
                             String lowerCaseValue = newValue.toLowerCase();
-                            if (newValue.isEmpty() || newValue == null){
+                            if (newValue.isEmpty() || newValue == null) {
                                 return true;
-                            }else if (book.getAuthor().toLowerCase().contains(lowerCaseValue)){
+                            } else if (book.getAuthor().toLowerCase().contains(lowerCaseValue)) {
                                 return true;
                             }
                             return false;
@@ -307,9 +313,9 @@ public class Controller {
                     txtFilter.textProperty().addListener(((observableValue, oldValue, newValue) -> {
                         filteredList.setPredicate((Predicate<? super Books>) (Books book) -> {
                             String lowerCaseValue = newValue.toLowerCase();
-                            if (newValue.isEmpty() || newValue == null){
+                            if (newValue.isEmpty() || newValue == null) {
                                 return true;
-                            }else if (book.getTitle().toLowerCase().contains(lowerCaseValue)){
+                            } else if (book.getTitle().toLowerCase().contains(lowerCaseValue)) {
                                 return true;
                             }
                             return false;
@@ -323,4 +329,28 @@ public class Controller {
         sortedList.comparatorProperty().bind(tblBooks.comparatorProperty());
         tblBooks.setItems(sortedList);
     }
+
+
+    @FXML
+    public void handleGiveBook() {
+        String username = txtGiveBookUserName.getText();
+        String password = pwGiveBookPassword.getText();
+        String bookID = tblBooks.getSelectionModel().getSelectedItem().getBookID();
+
+        try {
+            if (UserRepository.getInstance().checkGiveBooks(username, password, bookID)) {
+                System.out.println("Book given");
+//                UserRepository.getInstance().update(user);
+//                this.librarianList.set(librarianList.indexOf(user),user);
+
+
+            } else
+                System.out.println("No user");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
+
+
 }

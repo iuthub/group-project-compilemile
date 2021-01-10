@@ -3,6 +3,7 @@ package ExtraClasses;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import javax.xml.transform.Result;
 import java.sql.*;
 
 public class UserRepository {
@@ -17,6 +18,11 @@ public class UserRepository {
     private final String GET_LAST_ID = "SELECT MAX(id) FROM users";
     private final String UPDATE_QUERY = "UPDATE users SET password=? ,firstName=?, lastName=?, userName=?, role=? WHERE id=?";
 
+    private final String GIVE_BOOKS = "SELECT * FROM users WHERE userName=? AND password=?";
+
+    private final String RESET_TAKEN = "UPDATE books SET takenBy=? WHERE bookID=?";
+
+
     private Connection connection;
 
     private PreparedStatement getLibrarianStmt;
@@ -25,6 +31,11 @@ public class UserRepository {
     private PreparedStatement deleteStmt;
     private PreparedStatement getLastIdStmt;
     private PreparedStatement updateStmt;
+
+    private PreparedStatement giveBooks;
+
+    private PreparedStatement resetTaken;
+
 
     UserRepository() throws SQLException {
         connection = DriverManager.getConnection(DATABASE_URL);
@@ -35,7 +46,11 @@ public class UserRepository {
         this.deleteStmt = this.connection.prepareStatement(DELETE_QUERY);
         this.getLastIdStmt = this.connection.prepareStatement(GET_LAST_ID);
         this.updateStmt = connection.prepareStatement(UPDATE_QUERY);
+        this.giveBooks = connection.prepareStatement(GIVE_BOOKS);
+
+        this.resetTaken = connection.prepareStatement(RESET_TAKEN);
     }
+
     public static UserRepository getInstance() throws SQLException {
         if (instance == null) {
             return new UserRepository();
@@ -64,6 +79,7 @@ public class UserRepository {
 
         return listOfLibrarians;
     }
+
     public ObservableList<User> getAllStudents() throws SQLException {
         ResultSet result;
 
@@ -93,7 +109,7 @@ public class UserRepository {
         this.addStmt.setString(4, user.getUserName());
         this.addStmt.setString(5, "Librarian");
 
-        if (this.addStmt.executeUpdate()>0) {
+        if (this.addStmt.executeUpdate() > 0) {
             ResultSet lastResult = this.getLastIdStmt.executeQuery();
             if (lastResult.next()) {
                 return lastResult.getString(1);
@@ -101,6 +117,7 @@ public class UserRepository {
         }
         return null;
     }
+
     public String addStudent(User user) throws SQLException {
         this.addStmt.setString(1, user.getPassword());
         this.addStmt.setString(2, user.getFirstName());
@@ -108,7 +125,7 @@ public class UserRepository {
         this.addStmt.setString(4, user.getUserName());
         this.addStmt.setString(5, "Student");
 
-        if (this.addStmt.executeUpdate()>0) {
+        if (this.addStmt.executeUpdate() > 0) {
             ResultSet lastResult = this.getLastIdStmt.executeQuery();
             if (lastResult.next()) {
                 return lastResult.getString(1);
@@ -134,4 +151,39 @@ public class UserRepository {
 
         this.updateStmt.executeUpdate();
     }
+
+
+
+    public boolean checkGiveBooks(String username, String password, String bookID) throws SQLException {
+        ResultSet resultset;
+        String studentID;
+
+        giveBooks.setString(1, username);
+        giveBooks.setString(2, password);
+        resultset = giveBooks.executeQuery();
+        if (resultset.next()) {
+            studentID = resultset.getString("id");
+            resetTaken.setString(1, studentID);
+            resetTaken.setString(2, bookID);
+            resetTaken.executeUpdate();
+            return true;
+        }
+        return false;
+    }
+
+    public boolean returnBooks(String bookID) {
+        try {
+            resetTaken.setString(1, "1");
+            resetTaken.setString(2, bookID);
+            resetTaken.executeUpdate();
+            return true;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return false;
+    }
+
+
 }
+

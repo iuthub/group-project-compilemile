@@ -1,7 +1,7 @@
 package Student;
 
 import ExtraClasses.BookRepository;
-import ExtraClasses.Books;
+import ExtraClasses.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -20,8 +20,12 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import logIn.LogInController;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.function.Predicate;
 
@@ -68,14 +72,21 @@ public class Controller {
 
     private ObservableList<Books> bookList;
 
+
+    private ObservableList<Books> myBooks;
+
     public void initialize() {
         try {
             this.bookList = BookRepository.getInstance().getAllBooks();
             this.tblBooks.setItems(bookList);
 
-            ObservableList<String> choices = FXCollections.observableArrayList( "Title","Author Name");
+            ObservableList<String> choices = FXCollections.observableArrayList("Title", "Author Name");
             this.choiceBox.setItems(choices);
             this.choiceBox.setValue("Title");
+
+
+            this.myBooks = BookRepository.getInstance().getMyBooks(LogInController.getStudentID());
+            this.tblMyBooks.setItems(myBooks);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -91,7 +102,7 @@ public class Controller {
             stage.setTitle("Log In");
             stage.getIcons().add(new Image("/books.png"));
             stage.show();
-            ((Node)(event.getSource())).getScene().getWindow().hide();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (IOException exception) {
             exception.printStackTrace();
         }
@@ -99,28 +110,28 @@ public class Controller {
 
     @FXML
     public void displayBookDetails() {
-        try{
-        lblBookId.setText(tblBooks.getSelectionModel().getSelectedItem().getBookID());
-        lblBookTitle.setText(tblBooks.getSelectionModel().getSelectedItem().getTitle());
-        lblBookAuthor.setText(tblBooks.getSelectionModel().getSelectedItem().getAuthor());
-        lblBookISBN.setText(tblBooks.getSelectionModel().getSelectedItem().getIsbn());
-        lblBookPubDate.setText(tblBooks.getSelectionModel().getSelectedItem().getPublishDate());
-        lblBookTakenBy.setText(tblBooks.getSelectionModel().getSelectedItem().getTakenBy());
-        }catch(RuntimeException e){
+        try {
+            lblBookId.setText(tblBooks.getSelectionModel().getSelectedItem().getBookID());
+            lblBookTitle.setText(tblBooks.getSelectionModel().getSelectedItem().getTitle());
+            lblBookAuthor.setText(tblBooks.getSelectionModel().getSelectedItem().getAuthor());
+            lblBookISBN.setText(tblBooks.getSelectionModel().getSelectedItem().getIsbn());
+            lblBookPubDate.setText(tblBooks.getSelectionModel().getSelectedItem().getPublishDate());
+            lblBookTakenBy.setText(tblBooks.getSelectionModel().getSelectedItem().getTakenBy());
+        } catch (RuntimeException e) {
             System.out.println("Not selected");
         }
     }
 
     @FXML
     public void displayMyBookDetails() {
-        try{
-        lblMyBookId.setText(tblMyBooks.getSelectionModel().getSelectedItem().getBookID());
-        lblMyBookTitle.setText(tblMyBooks.getSelectionModel().getSelectedItem().getTitle());
-        lblMyBookAuthor.setText(tblMyBooks.getSelectionModel().getSelectedItem().getAuthor());
-        lblMyBookISBN.setText(tblMyBooks.getSelectionModel().getSelectedItem().getIsbn());
-        lblMyBookPubDate.setText(tblMyBooks.getSelectionModel().getSelectedItem().getPublishDate());
-        lblMyBookTakenBy.setText(tblMyBooks.getSelectionModel().getSelectedItem().getTakenBy());
-        }catch(RuntimeException e){
+        try {
+            lblMyBookId.setText(tblMyBooks.getSelectionModel().getSelectedItem().getBookID());
+            lblMyBookTitle.setText(tblMyBooks.getSelectionModel().getSelectedItem().getTitle());
+            lblMyBookAuthor.setText(tblMyBooks.getSelectionModel().getSelectedItem().getAuthor());
+            lblMyBookISBN.setText(tblMyBooks.getSelectionModel().getSelectedItem().getIsbn());
+            lblMyBookPubDate.setText(tblMyBooks.getSelectionModel().getSelectedItem().getPublishDate());
+            lblMyBookTakenBy.setText(tblMyBooks.getSelectionModel().getSelectedItem().getTakenBy());
+        } catch (RuntimeException e) {
             System.out.println("Not selected");
         }
     }
@@ -138,9 +149,9 @@ public class Controller {
                     txtFilter.textProperty().addListener(((observableValue, oldValue, newValue) -> {
                         filteredList.setPredicate((Predicate<? super Books>) (Books book) -> {
                             String lowerCaseValue = newValue.toLowerCase();
-                            if (newValue.isEmpty() || newValue == null){
+                            if (newValue.isEmpty() || newValue == null) {
                                 return true;
-                            }else if (book.getAuthor().toLowerCase().contains(lowerCaseValue)){
+                            } else if (book.getAuthor().toLowerCase().contains(lowerCaseValue)) {
                                 return true;
                             }
                             return false;
@@ -151,9 +162,9 @@ public class Controller {
                     txtFilter.textProperty().addListener(((observableValue, oldValue, newValue) -> {
                         filteredList.setPredicate((Predicate<? super Books>) (Books book) -> {
                             String lowerCaseValue = newValue.toLowerCase();
-                            if (newValue.isEmpty() || newValue == null){
+                            if (newValue.isEmpty() || newValue == null) {
                                 return true;
-                            }else if (book.getTitle().toLowerCase().contains(lowerCaseValue)){
+                            } else if (book.getTitle().toLowerCase().contains(lowerCaseValue)) {
                                 return true;
                             }
                             return false;
@@ -166,5 +177,19 @@ public class Controller {
         SortedList<Books> sortedList = new SortedList<>(filteredList);
         sortedList.comparatorProperty().bind(tblBooks.comparatorProperty());
         tblBooks.setItems(sortedList);
+    }
+
+    @FXML
+    public void handleReturnBook() {
+        String bookID = tblMyBooks.getSelectionModel().getSelectedItem().getBookID();
+
+        try {
+            if (UserRepository.getInstance().returnBooks(bookID)) {
+                System.out.println("Book returned");
+            } else
+                System.out.println("Not returned");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

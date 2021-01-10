@@ -161,17 +161,17 @@
                                 <columns>
                                     <TableColumn prefWidth="81.0" text="Title">
                                         <cellValueFactory>
-                                            <PropertyValueFactory property="" />
+                                            <PropertyValueFactory property="title" />
                                         </cellValueFactory>
                                     </TableColumn>
                                     <TableColumn prefWidth="82.0" text="Author">
                                         <cellValueFactory>
-                                            <PropertyValueFactory property="" />
+                                            <PropertyValueFactory property="author" />
                                         </cellValueFactory>
                                     </TableColumn>
                                     <TableColumn prefWidth="82.0" text="ISBN">
                                         <cellValueFactory>
-                                            <PropertyValueFactory property="" />
+                                            <PropertyValueFactory property="isbn" />
                                         </cellValueFactory>
                                     </TableColumn>
                                 </columns>
@@ -272,7 +272,7 @@
                             </GridPane>
                         </HBox>
                         <HBox prefHeight="20" prefWidth="200.0" spacing="5">
-                            <Button text="Return chosen book" />
+                            <Button text="Return chosen book" onAction="#handleReturnBook"/>
                         </HBox>
                     </VBox>
                 </Tab>

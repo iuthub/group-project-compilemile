@@ -2,7 +2,7 @@ package Admin;
 
 import ExtraClasses.BookRepository;
 import ExtraClasses.Books;
-import ExtraClasses.User;
+import ExtraClasses.*;
 import ExtraClasses.UserRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

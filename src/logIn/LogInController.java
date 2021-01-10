@@ -18,7 +18,7 @@ import java.sql.*;
 import java.sql.SQLException;
 
 
-public class    LogInController {
+public class LogInController {
     @FXML
     public TextField txtUsername;
     @FXML
@@ -31,6 +31,7 @@ public class    LogInController {
     ResultSet resultSet = null;
 
     private String role = null;
+    private String id = null;
 
     public void initialize() {
 
@@ -38,6 +39,12 @@ public class    LogInController {
 
     public LogInController() {
         connection = LogInRepository.connectDB();
+    }
+
+    private static String studentID = "";
+
+    public static String getStudentID() {
+        return studentID;
     }
 
     @FXML
@@ -51,7 +58,7 @@ public class    LogInController {
                     stage.setScene(new Scene(root, 760, 500));
                     stage.getIcons().add(new Image("/books.png"));
                     stage.show();
-                    ((Node)(event.getSource())).getScene().getWindow().hide();
+                    ((Node) (event.getSource())).getScene().getWindow().hide();
                 } catch (IOException exception) {
                     exception.printStackTrace();
                 }
@@ -63,19 +70,20 @@ public class    LogInController {
                     stage.setScene(new Scene(root, 760, 500));
                     stage.getIcons().add(new Image("/books.png"));
                     stage.show();
-                    ((Node)(event.getSource())).getScene().getWindow().hide();
+                    ((Node) (event.getSource())).getScene().getWindow().hide();
                 } catch (IOException exception) {
                     exception.printStackTrace();
                 }
             } else if (role.equals("Student")) {
                 try {
+                    studentID = id;
                     Parent root = FXMLLoader.load(getClass().getResource("/Student/studentWindow.fxml"));
                     Stage stage = new Stage();
                     stage.setTitle("Student Window");
                     stage.setScene(new Scene(root, 450, 400));
                     stage.getIcons().add(new Image("/books.png"));
                     stage.show();
-                    ((Node)(event.getSource())).getScene().getWindow().hide();
+                    ((Node) (event.getSource())).getScene().getWindow().hide();
                 } catch (IOException exception) {
                     exception.printStackTrace();
                 }
@@ -104,6 +112,7 @@ public class    LogInController {
                 lblNotification.setText("Login Successful\t...Redirecting...");
 
                 role = resultSet.getString("role");
+                id = resultSet.getString("id");
 
                 return true;
             }

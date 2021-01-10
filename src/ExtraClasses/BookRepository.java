@@ -18,6 +18,11 @@ public class BookRepository {
     private final String GET_LAST_ID = "SELECT MAX(bookID) FROM books";
     private final String UPDATE_QUERY = "UPDATE books SET takenBy=?, title=? ,author=?, isbn=?, publishDate=? WHERE bookID=?";
 
+
+    private final String GET_MY_BOOKS = "SELECT * from books inner join users on books.takenBy=users.id  WHERE users.id=?";
+
+
+
     private Connection connection;
 
     private PreparedStatement getAllStmt;
@@ -26,6 +31,8 @@ public class BookRepository {
     private PreparedStatement deleteStmt;
     private PreparedStatement getLastIdStmt;
     private PreparedStatement updateStmt;
+
+    private PreparedStatement getMyBooks;
 
     BookRepository() throws SQLException {
         this.connection = DriverManager.getConnection(DATABASE_URL);
@@ -36,6 +43,8 @@ public class BookRepository {
         this.deleteStmt = this.connection.prepareStatement(DELETE_QUERY);
         this.getLastIdStmt = this.connection.prepareStatement(GET_LAST_ID);
         this.updateStmt = this.connection.prepareStatement(UPDATE_QUERY);
+
+        this.getMyBooks=connection.prepareStatement(GET_MY_BOOKS);
     }
 
     public static BookRepository getInstance() throws SQLException {
@@ -114,5 +123,29 @@ public class BookRepository {
         this.deleteStmt.setString(1, bookID);
         this.deleteStmt.executeUpdate();
     }
+
+    public ObservableList<Books> getMyBooks(String id) throws SQLException{
+        this.getMyBooks.setString(1, id);
+
+        ResultSet result;
+
+        ObservableList<Books> books = FXCollections.observableArrayList();
+
+        result = getMyBooks.executeQuery();
+
+        while (result.next()) {
+            books.add(new Books(
+                    result.getString("bookID"),
+                    result.getString("takenBy"),
+                    result.getString("title"),
+                    result.getString("author"),
+                    result.getString("isbn"),
+                    result.getString("publishDate")
+            ));
+        }
+
+        return books;
+    }
+
 
 }
