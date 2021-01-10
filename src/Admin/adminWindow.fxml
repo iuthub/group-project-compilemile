@@ -115,16 +115,22 @@
                      </GridPane>
                         </HBox>
                         <HBox prefHeight="20" prefWidth="200.0" spacing="5">
-                            <TextField fx:id="txtLibFirstName" promptText="first name" />
+                            <TextField fx:id="txtLibFirstName" promptText="first name">
+                        <HBox.margin>
+                           <Insets left="8.0" />
+                        </HBox.margin></TextField>
                             <TextField fx:id="txtLibLastName" promptText="last name" />
                             <TextField fx:id="txtLibUsername" promptText="username" />
-                            <PasswordField fx:id="txtLibPassword" promptText="password" />
+                            <PasswordField fx:id="txtLibPassword" prefHeight="25.0" prefWidth="140.0" promptText="password" />
                         </HBox>
                         <HBox prefHeight="20" prefWidth="200.0" spacing="10">
                             <Button onAction="#addLib" prefHeight="25.0" prefWidth="50.0" text="Add">
                                 <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                 </padding>
+                        <HBox.margin>
+                           <Insets left="8.0" />
+                        </HBox.margin>
                             </Button>
                             <Button onAction="#updateLibrarian" prefHeight="25.0" prefWidth="50.0" text="Edit">
                                 <padding>
@@ -246,16 +252,22 @@
                         </HBox>
 
                         <HBox prefHeight="20" prefWidth="200.0" spacing="5">
-                            <PasswordField fx:id="txtStudPassword" promptText="password" />
+                            <PasswordField fx:id="txtStudPassword" promptText="password">
+                        <HBox.margin>
+                           <Insets left="8.0" />
+                        </HBox.margin></PasswordField>
                             <TextField fx:id="txtStudFirstName" promptText="first name" />
                             <TextField fx:id="txtStudLastName" promptText="last name" />
-                            <TextField fx:id="txtStudUsername" promptText="username" />
+                            <TextField fx:id="txtStudUsername" prefHeight="25.0" prefWidth="141.0" promptText="username" />
                         </HBox>
                         <HBox prefHeight="20" prefWidth="200.0" spacing="10">
                             <Button onAction="#addStud" prefHeight="25.0" prefWidth="50.0" text="Add">
                                 <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                 </padding>
+                        <HBox.margin>
+                           <Insets left="8.0" />
+                        </HBox.margin>
                             </Button>
                             <Button onAction="#updateStudent" prefHeight="25.0" prefWidth="50.0" text="Edit">
                                 <padding>
@@ -402,6 +414,9 @@
                                 <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                 </padding>
+                        <HBox.margin>
+                           <Insets left="8.0" />
+                        </HBox.margin>
                             </TextField>
                             <TextField fx:id="txtISBN" prefHeight="27.0" prefWidth="146.0" promptText="isbn">
                                 <padding>
@@ -418,17 +433,15 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                 </padding>
                             </TextField>
-                            <!--                     <TextField fx:id="txtTakenBy" prefWidth="100.0" promptText="taken by">-->
-                            <!--                        <padding>-->
-                            <!--                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />-->
-                            <!--                        </padding>-->
-                            <!--                     </TextField>-->
                         </HBox>
                         <HBox prefHeight="20" prefWidth="200.0" spacing="10">
                             <Button onAction="#addBook" prefHeight="25.0" prefWidth="50.0" text="Add">
                                 <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                 </padding>
+                        <HBox.margin>
+                           <Insets left="8.0" />
+                        </HBox.margin>
                             </Button>
                             <Button onAction="#updateBook" prefHeight="25.0" prefWidth="50.0" text="Edit">
                                 <padding>
