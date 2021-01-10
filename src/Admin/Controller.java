@@ -4,27 +4,34 @@ import ExtraClasses.BookRepository;
 import ExtraClasses.Books;
 import ExtraClasses.User;
 import ExtraClasses.UserRepository;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.function.Predicate;
 
 public class Controller {
     private ObservableList<User> librarianList;
     private ObservableList<User> studentList;
     private ObservableList<Books> bookList;
+
+    @FXML
+    public ChoiceBox<String> choiceBox;
+
+    @FXML
+    public TextField txtFilter;
 
     @FXML
     public TableView<User> tblLibrarians;
@@ -334,6 +341,9 @@ public class Controller {
             this.tblStudents.setItems(studentList);
             this.bookList = BookRepository.getInstance().getAllBooks();
             this.tblBooks.setItems(bookList);
+            ObservableList<String> choices = FXCollections.observableArrayList("Author Name", "Title");
+            this.choiceBox.setItems(choices);
+            this.choiceBox.setValue("Author Name");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -351,6 +361,49 @@ public class Controller {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
+    }
+
+    @FXML
+    public void filter() {
+        FilteredList<Books> filteredList = new FilteredList<>(bookList, book -> true);
+        tblBooks.setItems(filteredList);
+
+        txtFilter.setOnKeyReleased(keyEvent ->
+        {
+            switch (choiceBox.getValue())//Switch on choiceBox value
+            {
+                case "Author Name":
+                    txtFilter.textProperty().addListener(((observableValue, oldValue, newValue) -> {
+                        filteredList.setPredicate((Predicate<? super Books>) (Books book) -> {
+                            String lowerCaseValue = newValue.toLowerCase();
+                            if (newValue.isEmpty() || newValue == null){
+                                return true;
+                            }else if (book.getAuthor().toLowerCase().contains(lowerCaseValue)){
+                                return true;
+                            }
+                            return false;
+                        });
+                    }));
+                    break;
+                case "Title":
+                    txtFilter.textProperty().addListener(((observableValue, oldValue, newValue) -> {
+                        filteredList.setPredicate((Predicate<? super Books>) (Books book) -> {
+                            String lowerCaseValue = newValue.toLowerCase();
+                            if (newValue.isEmpty() || newValue == null){
+                                return true;
+                            }else if (book.getTitle().toLowerCase().contains(lowerCaseValue)){
+                                return true;
+                            }
+                            return false;
+                        });
+                    }));
+                    break;
+            }
+        });
+
+        SortedList<Books> sortedList = new SortedList<>(filteredList);
+        sortedList.comparatorProperty().bind(tblBooks.comparatorProperty());
+        tblBooks.setItems(sortedList);
     }
 
     @FXML
