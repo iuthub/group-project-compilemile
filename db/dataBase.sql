@@ -28,4 +28,4 @@ INSERT INTO books (takenBy, title, author, isbn, publishDate)
 VALUES
     (1,'Academic English 3','Williams','500520', '12.01.2009'),
     (1,'OOP2','Deitel','100123', '03.12.2015'),
-    (0,'Calculus','Markov','100123', '03.12.2015');;
+    (1,'Calculus','Markov','100123', '03.12.2015');
